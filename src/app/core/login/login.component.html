@@ -1,0 +1,24 @@
+<!-- app.component.html -->
+<h1>Login page</h1>
+<form [formGroup]="loginForm">
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" />
+    <div *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched" class="error">
+      Name is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input id="password" type="password" formControlName="password" />
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+      Password must be at least 6 characters long.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid" (click)="userLogin()">Submit</button>
+</form>

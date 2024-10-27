@@ -1,0 +1,119 @@
+
+<h1>{{ isEditMode ? 'Edit Party' : 'Create New Party' }}</h1>
+<div class="party-form-container">
+  <form [formGroup]="partyForm">
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" class="form-control" />
+      <div *ngIf="partyForm.get('name')?.invalid && partyForm.get('name')?.touched" class="error">
+        Name is required.
+      </div>
+      <div *ngIf="hasServerError('name')" class="error">
+        {{ getServerErrorMessage('name') }}
+      </div>
+    </div>
+
+    <!-- Company Name Field -->
+    <div class="form-group">
+      <label for="company_name">Company Name</label>
+      <input id="company_name" type="text" formControlName="company_name" class="form-control" />
+      <div *ngIf="partyForm.get('company_name')?.invalid && partyForm.get('company_name')?.touched" class="error">
+        Company name is required.
+      </div>
+      <div *ngIf="hasServerError('company_name')" class="error">
+        {{ getServerErrorMessage('company_name') }}
+      </div>
+    </div>
+
+    <!-- Mobile No Field -->
+    <div class="form-group">
+      <label for="mobile_no">Mobile No</label>
+      <input id="mobile_no" type="text" formControlName="mobile_no" class="form-control" />
+      <div *ngIf="partyForm.get('mobile_no')?.invalid && partyForm.get('mobile_no')?.touched" class="error">
+        Mobile number is required.
+      </div>
+      <div *ngIf="hasServerError('mobile_no')" class="error">
+        {{ getServerErrorMessage('mobile_no') }}
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control" />
+      <div *ngIf="partyForm.get('email')?.invalid && partyForm.get('email')?.touched" class="error">
+        A valid email is required.
+      </div>
+      <div *ngIf="hasServerError('email')" class="error">
+        {{ getServerErrorMessage('email') }}
+      </div>
+    </div>
+
+    <!-- Login Access Field -->
+    <div class="form-group">
+      <label for="login_access">Login Access</label>
+      <select id="login_access" formControlName="login_access" class="form-control">
+        <option [ngValue]="null">Select Access</option>
+        <option value="true">Granted</option>
+        <option value="false">Denied</option>
+      </select>
+      <div *ngIf="partyForm.get('login_access')?.invalid && partyForm.get('login_access')?.touched" class="error">
+        Login access is required.
+      </div>
+      <div *ngIf="hasServerError('login_access')" class="error">
+        {{ getServerErrorMessage('login_access') }}
+      </div>
+    </div>
+
+    <!-- Date of Birth Field -->
+    <div class="form-group">
+      <label for="date_of_birth">Date of Birth</label>
+      <input id="date_of_birth" type="date" formControlName="date_of_birth" class="form-control" />
+      <div *ngIf="partyForm.get('date_of_birth')?.invalid && partyForm.get('date_of_birth')?.touched" class="error">
+        Date of birth is required.
+      </div>
+      <div *ngIf="hasServerError('date_of_birth')" class="error">
+        {{ getServerErrorMessage('date_of_birth') }}
+      </div>
+    </div>
+
+    <!-- Anniversary Date Field -->
+    <div class="form-group">
+      <label for="anniversary_date">Anniversary Date</label>
+      <input id="anniversary_date" type="date" formControlName="anniversary_date" class="form-control" />
+      <div *ngIf="partyForm.get('anniversary_date')?.invalid && partyForm.get('anniversary_date')?.touched" class="error">
+        Anniversary date is required.
+      </div>
+      <div *ngIf="hasServerError('anniversary_date')" class="error">
+        {{ getServerErrorMessage('anniversary_date') }}
+      </div>
+    </div>
+
+    <!-- Credit Limit Field -->
+    <div class="form-group">
+      <label for="credit_limit">Credit Limit</label>
+      <input id="credit_limit" type="text" formControlName="credit_limit" class="form-control" />
+      <div *ngIf="partyForm.get('credit_limit')?.invalid && partyForm.get('credit_limit')?.touched" class="error">
+        Credit limit is required and must be a number.
+      </div>
+      <div *ngIf="hasServerError('credit_limit')" class="error">
+        {{ getServerErrorMessage('credit_limit') }}
+      </div>
+    </div>
+
+      <!-- Apply TDS -->
+  <div class="form-group">
+    <label for="apply_tds">Apply TDS</label>
+    <input id="apply_tds" formControlName="apply_tds" type="checkbox">
+    <div *ngIf="hasServerError('apply_tds')" class="error">
+      {{ getServerErrorMessage('apply_tds') }}
+    </div>
+  </div>
+
+    <!-- Submit Button -->
+    <button type="submit"  class="btn btn-primary" (click)="createOrUpdateParty()">
+      {{ isEditMode ? 'Update Party' : 'Create Party' }}
+    </button>
+  </form>
+</div>
