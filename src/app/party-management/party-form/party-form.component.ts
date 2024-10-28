@@ -12,15 +12,15 @@ import { Party } from '../../model/party.model';
 export class PartyFormComponent implements OnInit {
   partyForm: FormGroup;
   serverErrors: any = {};
-  partyId: number | null = null;  // Store party ID for edit case
-  isEditMode: boolean = false;    // Flag to determine whether it's edit or create mode
+  partyId: number | null = null; 
+  isEditMode: boolean = false;    
 
   constructor(
     private fb: FormBuilder,
     private partyService: PartyService,
     private route: ActivatedRoute,
     private router: Router
-    
+
   ) {
     this.partyForm = this.fb.group({
       name: ['', Validators.required],
@@ -78,10 +78,9 @@ export class PartyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get the party ID from the route if it exists
     const id = this.route.snapshot.params['id'];
-    console.log('ID from route:', id); // Log the ID from the route
-    this.isEditMode = !!id; 
+    console.log('ID from route:', id); 
+    this.isEditMode = !!id;
     this.partyId = id ? +id : null;
 
     if (this.isEditMode && this.partyId) {
@@ -89,30 +88,33 @@ export class PartyFormComponent implements OnInit {
     }
   }
 
-  // Fetch the party details for the edit case
- loadPartyData(): void {
-  this.partyService.getParty(this.partyId).subscribe(
-    (partyData) => {
-      this.partyForm.patchValue(partyData);
-      console.log(this.partyForm.value);  // Check if the form is populated correctly
-    },
-    (error) => {
-      console.error('Error loading party data:', error);
-      alert('Error loading party data.');
-    }
-  );
-}
+  /**
+   * Fetch the party details for the edit case
+   */
+  loadPartyData(): void {
+    this.partyService.getParty(this.partyId).subscribe(
+      (partyData) => {
+        this.partyForm.patchValue(partyData);
+        console.log(this.partyForm.value);  // Check if the form is populated correctly
+      },
+      (error) => {
+        console.error('Error loading party data:', error);
+        alert('Error loading party data.');
+      }
+    );
+  }
 
+/**
+ * This Function used to Create and Update Party
+ */
   createOrUpdateParty(): void {
     this.serverErrors = {};
     const partyData: Party = this.partyForm.value;
     if (this.isEditMode && this.partyId) {
-      // Update existing party
-      this.partyService.updateParty(partyData,this.partyId).subscribe(
-        (result) => {this.router.navigate(['/list']);},
+      this.partyService.updateParty(partyData, this.partyId).subscribe(
+        (result) => { this.router.navigate(['/list']); },
       );
     } else {
-      // Create new party
       this.partyService.createParty(this.partyForm.value).subscribe(
         (result) => {
           this.partyForm.reset();
@@ -128,14 +130,22 @@ export class PartyFormComponent implements OnInit {
       );
     }
   }
-  
 
-  // Helper method to check if a field has a server-side error
+
+  /**
+   *  Helper method to check if a field has a server-side error
+   * @param field 
+   * @returns 
+   */
   hasServerError(field: string): boolean {
     return !!this.serverErrors[field];
   }
 
-  // Helper method to get the server error message for a field
+  /**
+   * Helper method to get the server error message for a field
+   * @param field 
+   * @returns 
+   */
   getServerErrorMessage(field: string): string {
     return this.serverErrors[field]?.[0] || '';
   }

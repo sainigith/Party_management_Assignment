@@ -2,7 +2,6 @@
 <h1>{{ isEditMode ? 'Edit Party' : 'Create New Party' }}</h1>
 <div class="party-form-container">
   <form [formGroup]="partyForm">
-    <!-- Name Field -->
     <div class="form-group">
       <label for="name">Name</label>
       <input id="name" type="text" formControlName="name" class="form-control" />
@@ -13,8 +12,6 @@
         {{ getServerErrorMessage('name') }}
       </div>
     </div>
-
-    <!-- Company Name Field -->
     <div class="form-group">
       <label for="company_name">Company Name</label>
       <input id="company_name" type="text" formControlName="company_name" class="form-control" />
@@ -25,8 +22,6 @@
         {{ getServerErrorMessage('company_name') }}
       </div>
     </div>
-
-    <!-- Mobile No Field -->
     <div class="form-group">
       <label for="mobile_no">Mobile No</label>
       <input id="mobile_no" type="text" formControlName="mobile_no" class="form-control" />
@@ -37,8 +32,6 @@
         {{ getServerErrorMessage('mobile_no') }}
       </div>
     </div>
-
-    <!-- Email Field -->
     <div class="form-group">
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" class="form-control" />
@@ -49,8 +42,6 @@
         {{ getServerErrorMessage('email') }}
       </div>
     </div>
-
-    <!-- Login Access Field -->
     <div class="form-group">
       <label for="login_access">Login Access</label>
       <select id="login_access" formControlName="login_access" class="form-control">
@@ -65,8 +56,6 @@
         {{ getServerErrorMessage('login_access') }}
       </div>
     </div>
-
-    <!-- Date of Birth Field -->
     <div class="form-group">
       <label for="date_of_birth">Date of Birth</label>
       <input id="date_of_birth" type="date" formControlName="date_of_birth" class="form-control" />
@@ -77,8 +66,6 @@
         {{ getServerErrorMessage('date_of_birth') }}
       </div>
     </div>
-
-    <!-- Anniversary Date Field -->
     <div class="form-group">
       <label for="anniversary_date">Anniversary Date</label>
       <input id="anniversary_date" type="date" formControlName="anniversary_date" class="form-control" />
@@ -89,8 +76,6 @@
         {{ getServerErrorMessage('anniversary_date') }}
       </div>
     </div>
-
-    <!-- Credit Limit Field -->
     <div class="form-group">
       <label for="credit_limit">Credit Limit</label>
       <input id="credit_limit" type="text" formControlName="credit_limit" class="form-control" />
@@ -101,8 +86,6 @@
         {{ getServerErrorMessage('credit_limit') }}
       </div>
     </div>
-
-      <!-- Apply TDS -->
   <div class="form-group">
     <label for="apply_tds">Apply TDS</label>
     <input id="apply_tds" formControlName="apply_tds" type="checkbox">

@@ -36,5 +36,5 @@ export interface Address {
     credit_limit: number;
     address: Address[];
     bank: Bank[];
-    image: File | null; // Assuming image can be a file or null
+    image: File | null; 
   }

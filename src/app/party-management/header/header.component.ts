@@ -15,7 +15,7 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout(); 
-    localStorage.removeItem('userToken'); // Clear login token or session
-    this.router.navigate(['/login']);  // Redirect to login after logout
+    localStorage.removeItem('userToken'); 
+    this.router.navigate(['/login']);  
   }
 }

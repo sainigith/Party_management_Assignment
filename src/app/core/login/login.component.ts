@@ -23,17 +23,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // Automatically redirect if already logged in
   ngOnInit(): void {
     if (this.authService.getAuthToken()) {
-      this.router.navigate(['/list']);  // Replace with your protected route
+      this.router.navigate(['/list']); 
     }
   }
 
   get f() {
     return this.loginForm.controls;
   }
-
+/**
+ * Used Function Login Page.
+ * @returns 
+ */
   userLogin() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe(
       (response) => {
         if (response.token) {
-          this.router.navigate(['/list']);  // Redirect to dashboard after login
+          this.router.navigate(['/list']);  
         }
       },
       (error) => {
